@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAMODA Technologies - Contact Us</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .contact-container {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            background: #fff;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 20px;
+            transform: scale(0.95);
+            animation: popIn 0.5s forwards;
+            position: relative;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .contact-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            border-bottom: 4px solid #0056b3;
+            position: relative;
+        }
+
+        .back-arrow {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="%23ffffff" d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"/%3E%3C/svg%3E') no-repeat center center;
+            background-size: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .back-arrow:hover {
+            transform: scale(1.1);
+        }
+
+        .contact-body {
+            padding: 20px;
+        }
+
+        .contact-body label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        .contact-body input, .contact-body textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-body input:focus, .contact-body textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .contact-body button {
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-body button:hover {
+            background-color: #0056b3;
+        }
+
+        .contact-footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            background-color: #f8f9fa;
+            border-top: 4px solid #ddd;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<div class="contact-container">
+    <div class="contact-header">
+        <div class="back-arrow" onclick="window.location.href='welcome.html';"></div>
+        Contact RAMODA Technologies
+    </div>
+
+    <div class="contact-body">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+
+        <label for="email">Your Email</label>
+        <input type="email" id="email" placeholder="Enter your email">
+
+        <label for="message">Your Message</label>
+        <textarea id="message" rows="5" placeholder="Enter your message"></textarea>
+
+        <button onclick="submitForm()">Send Message</button>
+    </div>
+
+    <div class="contact-footer">
+        &copy; 2024 RAMODA Technologies | All rights reserved.
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyC8sGSHAWIkG7Jq7DPXg7II1dgFCXZ4_TU",
+        authDomain: "train-e7f95.firebaseapp.com",
+        databaseURL: "https://shool-70ffb-default-rtdb.firebaseio.com/",
+        projectId: "train-e7f95",
+        storageBucket: "train-e7f95.appspot.com",
+        messagingSenderId: "1052862647968",
+        appId: "1:1052862647968:web:0d67b008281f1919ca43c5",
+        measurementId: "G-925WN7STJZ"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    function submitForm() {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        if (name && email && message) {
+            const contactRef = ref(database, 'contact_us/' + Date.now());
+            set(contactRef, {
+                name: name,
+                email: email,
+                message: message
+            }).then(() => {
+                alert('Thank you for contacting us, ' + name + '! We will get back to you shortly.');
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('message').value = '';
+            }).catch((error) => {
+                alert('Error: ' + error.message);
+            });
+        } else {
+            alert('Please fill in all fields.');
+        }
+    }
+</script>
+
+</body>
+</html>

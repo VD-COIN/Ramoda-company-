@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAMODA Technologies - FAQ</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            
+        }
+
+        .faq-container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transform: scale(0.95);
+            animation: popIn 0.5s forwards;
+            position: relative;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .faq-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            border-bottom: 4px solid #0056b3;
+            position: relative;
+        }
+
+        .back-arrow {
+            position: absolute;
+            left: 5px;
+            top: 15px;
+            width: 15px;
+            height: 30px;
+            cursor: pointer;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="%23ffffff" d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"/%3E%3C/svg%3E') no-repeat center center;
+            background-size: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .back-arrow:hover {
+            transform: scale(1.1);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .faq-item h3 {
+            margin: 0;
+            padding: 15px;
+            cursor: pointer;
+            background-color: #f8f9fa;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-item h3:hover {
+            background-color: #e2e6ea;
+        }
+
+        .faq-item p {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            margin: 0;
+            background-color: #fff;
+        }
+
+        .faq-item.active p {
+            max-height: 200px;
+            padding: 15px;
+        }
+
+        .faq-footer {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            font-size: 1rem;
+            border-top: 4px solid #0056b3;
+        }
+
+        .faq-footer a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .faq-footer a:hover {
+            color: #e2e6ea;
+        }
+    </style>
+</head>
+<body>
+
+<div class="faq-container">
+    <div class="faq-header">
+        <div class="back-arrow" onclick="window.location.href='welcome.html';"></div>
+        RAMODA Technologies - Frequently Asked Questions
+    </div>
+
+    <div class="faq-item">
+        <h3>What services does RAMODA Technologies offer?</h3>
+        <p>RAMODA Technologies offers a wide range of IT solutions including software development, cloud computing, cybersecurity, and more.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>How can I contact customer support?</h3>
+        <p>You can reach our customer support team through our website contact form or by calling our support hotline at (123) 456-7890.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Where is RAMODA Technologies located?</h3>
+        <p>Our headquarters is located in New York, with additional offices in several other major cities worldwide.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Does RAMODA Technologies offer customized solutions?</h3>
+        <p>Yes, we specialize in providing tailored IT solutions to meet the unique needs of our clients.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>What industries does RAMODA Technologies serve?</h3>
+        <p>We serve various industries, including finance, healthcare, retail, and more.</p>
+    </div>
+
+    <div class="faq-footer">
+        <p>&copy; 2024 RAMODA Technologies | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.faq-item h3').forEach(item => {
+        item.addEventListener('click', () => {
+            const parent = item.parentElement;
+            parent.classList.toggle('active');
+        });
+    });
+</script>
+
+</body>
+</html>
